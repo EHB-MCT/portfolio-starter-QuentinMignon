@@ -20,3 +20,16 @@ app.get("/players/:namePlayer", async (req, res) => {
   const players = await knex("players").where("name", nameOfPlayer);
   res.json(players);
 });
+
+app.post("/players", async (req, res) => {
+  if (!req.body.name || !req.body.position) {
+    return res.status(400).send("Please fill in the missing fields");
+  }
+  const newPlayer = {
+    name: req.body.name,
+    position: req.body.position,
+  };
+  await knex("players").insert(newPlayer);
+
+  res.status(200).send("Player successfully added");
+});
