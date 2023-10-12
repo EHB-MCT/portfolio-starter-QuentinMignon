@@ -40,3 +40,12 @@ app.delete("/players/:namePlayer", async (req, res) => {
   await knex("players").where("name", nameOfPlayer).del();
   res.status(200).send("Player successfully deleted");
 });
+
+app.put("/players/:id", async (req, res) => {
+  if (!req.body.name) {
+    return res.status(400).send("Please fill in the missing fields");
+  }
+  const playerId = req.params.id;
+  await knex("players").where("id", playerId).update({ name: req.body.name });
+  res.status(200).send("Player successfully updated");
+});
