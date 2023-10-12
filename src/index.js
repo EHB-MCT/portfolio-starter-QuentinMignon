@@ -33,3 +33,10 @@ app.post("/players", async (req, res) => {
 
   res.status(200).send("Player successfully added");
 });
+
+app.delete("/players/:namePlayer", async (req, res) => {
+  const nameOfPlayer = req.params.namePlayer;
+  console.log(nameOfPlayer);
+  await knex("players").where("name", nameOfPlayer).del();
+  res.status(200).send("Player successfully deleted");
+});
