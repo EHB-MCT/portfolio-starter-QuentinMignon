@@ -15,3 +15,8 @@ app.get("/players", async (req, res) => {
   res.json(players);
 });
 
+app.get("/players/:namePlayer", async (req, res) => {
+  const nameOfPlayer = req.params.namePlayer;
+  const players = await knex("players").where("name", nameOfPlayer);
+  res.json(players);
+});
