@@ -6,9 +6,7 @@ const cors = require("cors");
 app.use(express.json());
 app.use(cors());
 
-app.listen(3000, () => {
-  console.log(`Server is running on port 3000`);
-});
+
 
 app.get("/players", async (req, res) => {
   const players = await knex("players").select();
@@ -48,4 +46,8 @@ app.put("/players/:id", async (req, res) => {
   const playerId = req.params.id;
   await knex("players").where("id", playerId).update({ name: req.body.name });
   res.status(200).send("Player successfully updated");
+});
+
+app.listen(3000, () => {
+  console.log(`Server is running on port 3000`);
 });

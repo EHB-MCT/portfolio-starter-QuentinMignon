@@ -1,17 +1,18 @@
 const knex = require("knex")({
-  client: "mysql",
+  client: "pg",
   connection: {
-    host: "127.0.0.1",
-    port: 3306,
-    user: "root",
-    password: "",
-    database: "playerdb",
+    host: process.env.POSTGRES_HOST,
+    port: 5432,
+    user: process.env.POSTGRES_USER,
+    password: process.env.POSTGRES_PASSWORD,
+    database: process.env.POSTGRES_DB,
   },
 });
 
 async function main() {
   try {
     const exists = await knex.schema.hasTable("players");
+    console.log(exists)
     if (!exists) {
       console.log("inside");
       await knex.schema.createTable("players", (table) => {
@@ -19,7 +20,7 @@ async function main() {
         table.string("name");
         table.string("position");
       });
-      await knex("users").insert([
+      await knex("players").insert([
         { name: "Mbappé", position: "Forward" },
         { name: "Ronaldo", position: "Forward" },
         { name: "Messi", position: "Forward" },
