@@ -4,9 +4,6 @@ const request = require("supertest");
 const app = require("./../../index");
 
 describe("POST /games", () => {
-  beforeAll(async () => {
-    await knex.raw("begin");
-  });
 
   afterAll(async () => {
     await knex("games").where("game", "TestGame").del();
