@@ -1,53 +1,67 @@
 const express = require("express");
 const app = express();
-const knex = require("./database.js");
+const knexConfig = require("./database/knexfile.js");
+const knex = require("knex")(knexConfig.development);
 const cors = require("cors");
+const checkGameData = require("./__test__/helpers/checkGameData.js");
 
 app.use(express.json());
 app.use(cors());
 
-
-
-app.get("/players", async (req, res) => {
-  const players = await knex("players").select();
-  res.json(players);
+app.get("/games", async (req, res) => {
+  const games = await knex("games").select();
+  res.status(200).json(games);
 });
 
-app.get("/players/:namePlayer", async (req, res) => {
-  const nameOfPlayer = req.params.namePlayer;
-  const players = await knex("players").where("name", nameOfPlayer);
-  res.json(players);
-});
-
-app.post("/players", async (req, res) => {
-  if (!req.body.name || !req.body.position) {
-    return res.status(400).send("Please fill in the missing fields");
+app.get("/games/:nameGame", async (req, res) => {
+  const nameOfGame = req.params.nameGame;
+  const checkExistGame = await knex("games").where("game", nameOfGame);
+  if (checkExistGame == 0) {
+    return res.status(404).json({ message: "Game doesn't exists" });
   }
-  const newPlayer = {
-    name: req.body.name,
-    position: req.body.position,
+  return res.status(200).json(checkExistGame);
+});
+
+app.post("/games", async (req, res) => {
+  if (!checkGameData(req.body)) {
+    return res
+      .status(404)
+      .json({ message: "Please fill in the missing fields" });
+  }
+  const newGame = {
+    game: req.body.game,
+    category: req.body.category,
   };
-  await knex("players").insert(newPlayer);
+  await knex("games").insert(newGame);
 
-  res.status(200).send("Player successfully added");
+  res.status(200).send({ message: "Game successfully added" });
 });
 
-app.delete("/players/:namePlayer", async (req, res) => {
-  const nameOfPlayer = req.params.namePlayer;
-  console.log(nameOfPlayer);
-  await knex("players").where("name", nameOfPlayer).del();
-  res.status(200).send("Player successfully deleted");
+app.delete("/games/:nameGame", async (req, res) => {
+  const nameOfGame = req.params.nameGame;
+  const checkGame = await knex("games").where("game", nameOfGame);
+  if (checkGame.length != 0) {
+    await knex("games").where("game", nameOfGame).del();
+    return res.status(200).json({ message: "Game successfully deleted" });
+  }
+  return res.status(404).json({ message: "Game doesn't exists" });
 });
 
-app.put("/players/:id", async (req, res) => {
-  if (!req.body.name) {
+app.put("/games/:nameGame", async (req, res) => {
+  if (!req.body.game) {
     return res.status(400).send("Please fill in the missing fields");
   }
-  const playerId = req.params.id;
-  await knex("players").where("id", playerId).update({ name: req.body.name });
-  res.status(200).send("Player successfully updated");
+  const gameName = req.params.nameGame;
+  const checkExistGame = await knex("games").where("game", gameName);
+  if (checkExistGame.length == 0) {
+    return res.status(404).json({ message: "Game not found" });
+  }
+  await knex("games").where("game", gameName).update({ game: req.body.game });
+  res.status(200).json({ message: "Game successfully updated" });
 });
 
 app.listen(3000, () => {
   console.log(`Server is running on port 3000`);
 });
+
+module.exports = app;
