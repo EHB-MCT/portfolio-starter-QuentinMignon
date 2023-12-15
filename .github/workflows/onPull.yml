@@ -1,0 +1,22 @@
+name: testOnPull
+
+on:
+  pull_request:
+    branches: [main, dev]
+
+env:
+  POSTGRES_USER: Test
+  POSTGRES_PASSWORD: Test
+  POSTGRES_DB: test
+  POSTGRES_HOST: db
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: build docker containers
+        run: docker-compose build
+
+      - name: run docker containers
+        run: docker-compose up --build --exit-code-from api
