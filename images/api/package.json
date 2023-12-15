@@ -48,9 +48,10 @@
     "yallist": "^4.0.0"
   },
   "scripts": {
-    "start": "npx knex migrate:latest --cwd ./src/database && npx knex seed:run --cwd ./src/database && npm run test && node ./src/index.js",
-    "test": "jest --detectOpenHandles --forceExit",
-    "test-watch": "jest --watchAll --detectOpenHandles"
+    "start": "npx knex migrate:latest --cwd ./src/database && npx knex seed:run --cwd ./src/database && npm run jest && node ./src/index.js",
+    "jest": "jest --detectOpenHandles --forceExit",
+    "test-watch": "jest --watchAll --detectOpenHandles",
+    "test": "npx knex migrate:latest --cwd ./src/database && npx knex seed:run --cwd ./src/database && npm run jest"
   },
   "author": "",
   "license": "ISC",
