@@ -1,7 +1,7 @@
 const knexConfig = require("./../../database/knexfile");
 const knex = require("knex")(knexConfig.development);
 const request = require("supertest");
-const app = require("./../../index");
+const app = require("./../../app");
 
 describe("GET /games", () => {
   test("Returns an array with all the games", async () => {
