@@ -17,6 +17,17 @@ services:
       db:
         condition: service_healthy
 
+  app:
+    build: "images/gamesApp"
+    image: quentinmgn/app
+    ports:
+      - 5173:5173
+    volumes:
+      - ./images/gamesApp/src:/usr/app/src
+    depends_on:
+      api:
+        condition: service_started      
+
   db:
     image: postgres:16.0
     healthcheck:
