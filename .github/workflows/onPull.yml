@@ -1,4 +1,4 @@
-ame: testOnPull
+name: testOnPull
 
 on:
   pull_request:
