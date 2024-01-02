@@ -23,13 +23,13 @@ GET /games
 ### GET a game by the name of the game
 
 ```bash
-GET /games/GameName`
+GET /games/GameName
 ```
 
 ### Post a game
 
 ```bash
-POST /games`
+POST /games
 ```
 
 ### Delete a game by the game of the name
