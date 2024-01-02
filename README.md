@@ -26,19 +26,19 @@ GET /games
 GET /games/GameName
 ```
 
-### Post a game
+### POST a game
 
 ```bash
 POST /games
 ```
 
-### Delete a game by the game of the name
+### DELETE a game by the game of the name
 
 ```bash
 DELETE /games/GameName
 ```
 
-### Update a game by the name of the game
+### UPDATE a game by the name of the game
 
 ```bash
 PUT /games/GameName
