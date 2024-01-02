@@ -14,30 +14,35 @@ In this app you will be able to
 
 ## Endpoints
 
-### GET /games
+### GET the games
 
-- Beschrijving: Haal alle beschikbare games op.
-- Voorbeeld: `http://localhost:port/games`
+```bash
+GET /games
+```
 
-### GET /games/:nameGame
+### GET a game by the name of the game
 
-- Beschrijving: Haal informatie op over een specifieke game op basis van de naam.
-- Voorbeeld: `http://localhost:port/games/GameName`
+```bash
+GET /games/GameName`
+```
 
-### POST /games
+### Post a game
 
-- Beschrijving: Voeg een nieuwe game toe.
-- Voorbeeld: `http://localhost:port/games`
+```bash
+POST /games`
+```
 
-### DELETE /games/:nameGame
+### Delete a game by the game of the name
 
-- Beschrijving: Verwijder een specifieke game op basis van de naam.
-- Voorbeeld: `http://localhost:port/games/GameName`
+```bash
+DELETE /games/GameName
+```
 
-### PUT /games/:nameGame
+### Update a game by the name of the game
 
-- Beschrijving: Werk informatie van een specifieke game bij op basis van de naam.
-- Voorbeeld: `http://localhost:port/games/GameName`
+```bash
+PUT /games/GameName
+```
 
 ## Docker Deployment
 
