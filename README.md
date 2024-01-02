@@ -8,7 +8,7 @@ Quentin Mignon
 
 ## Start
 
-To run my container you will need to use this command
+To run my app you will need to use this command
 
 ```bash
 docker-compose up --build
@@ -44,7 +44,7 @@ GET /games
 ### GET a game by the name of the game
 
 ```bash
-GET /games/GameName
+GET /games/:GameName
 ```
 
 ### POST a game
@@ -56,13 +56,13 @@ POST /games
 ### DELETE a game by the game of the name
 
 ```bash
-DELETE /games/GameName
+DELETE /games/:GameName
 ```
 
 ### UPDATE a game by the name of the game
 
 ```bash
-PUT /games/GameName
+PUT /games/:GameName
 ```
 
 ## Docker Deployment
