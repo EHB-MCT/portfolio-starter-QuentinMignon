@@ -66,7 +66,7 @@ PUT /games/:GameName
 
 ## Docker Deployment
 
-Om deze app lokaal uit te voeren met Docker, voer je het volgende commando uit:
+To run this app locally using Docker, execute the following command:
 
 ```bash
 docker-compose up --build
