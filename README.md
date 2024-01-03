@@ -61,12 +61,12 @@ docker-compose up --build
 
 ## What I used to make my project
 
-https://youtu.be/gAkwW2tuIqE?si=wkZxEY_7FUgxqn9q
-https://www.geeksforgeeks.org/how-to-use-a-dockerignore-file/
-https://youtu.be/9MqpBlEPS5A?si=kgyxWD2DNEiHymFR
-https://www.w3schools.com/react/react_getstarted.asp
-https://canvas.ehb.be/courses/33618
-https://chat.openai.com/share/5c2ed57e-b7ca-4cc1-a34a-7e2d0add70dc
+- https://youtu.be/gAkwW2tuIqE?si=wkZxEY_7FUgxqn9q
+- https://www.geeksforgeeks.org/how-to-use-a-dockerignore-file/
+- https://youtu.be/9MqpBlEPS5A?si=kgyxWD2DNEiHymFR
+- https://www.w3schools.com/react/react_getstarted.asp
+- https://canvas.ehb.be/courses/33618
+- https://chat.openai.com/share/5c2ed57e-b7ca-4cc1-a34a-7e2d0add70dc
 
 ## License
 
